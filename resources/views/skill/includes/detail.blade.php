@@ -1,0 +1,2 @@
+
+@include('skill.partials.detail')

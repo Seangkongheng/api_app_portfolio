@@ -1,0 +1,1 @@
+@include('gallarys.includes.partails.index')

@@ -1,0 +1,2 @@
+
+@include('projects.partials.detail')

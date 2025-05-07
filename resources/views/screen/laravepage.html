@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Larvel</title>
+  <link rel="icon" href="../image/profile.png" />
+  <link rel="stylesheet" href="../style/style.css" />
+  <!-- font-awsome -->
+  <script src="https://kit.fontawesome.com/e8ae625125.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="../index.html">
+          <img src="../image/logo.png" class="logo" alt="" />
+        </a>
+        <ul id="sidemenu">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../#about">About</a></li>
+          <li><a href="gallary.html">Gallary</a></li>
+          <li><a href="../#services">Service</a></li>
+          <li><a href="../#portfolio">Portfolio</a></li>
+          <li><a class="btn__contact" href="#contact">Contact</a></li>
+          <i class="fa-solid fa-circle-xmark" onclick="closemen()"></i>
+        </ul>
+        <i class="fa-solid fa-bars" onclick="openMenu()"></i>
+      </nav>
+    </div>
+  </header>
+
+  <div class="home__screen">
+    <div class="background-fack"></div>
+
+
+    <div id="project">
+      <h1>My Project Laravel</h1>
+      <hr />
+
+      <div class="project-content">
+       
+        <div class="project-block">
+          <img src="../image/sport1.png" alt="" />
+          <div class="project-name">
+            <h1>Sport New</h1>
+            <p>This is sytem and website for sport website that can insert from backend</p>
+          </div>
+          <div class="view-souce-code">
+            <a class="btn" href="https://github.com/Seangkongheng/spot-new/tree/master" target="_blank">code</a>
+            <a href="https://github.com/Seangkongheng/spot-new/tree/master">
+              <i class="fa-solid fa-code"></i></a>
+          </div>
+        </div>
+
+        <div class="project-block">
+          <img src="../image/nomkhmer1.png" alt="" />
+          <div class="project-name">
+            <h1>Nomkhmer Sale</h1>
+            <p>This is sytem and website for sport website that can insert from backend</p>
+          </div>
+          <div class="view-souce-code">
+            <a class="btn" href="https://github.com/Seangkongheng/Nomkhmer" target="_blank">code</a>
+            <a href="https://github.com/Seangkongheng/Nomkhmer">
+              <i class="fa-solid fa-code"></i></a>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+  <!-- copyright -->
+  <div class="copyright">
+    <p>Copyright @seang kong heng<i class="fa-solid fa-heart"></i>2023</p>
+  </div>
+  <script src="../js/main.js"></script>
+  <script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tablContents = document.getElementsByClassName("tab-content");
+
+    function openTab(tabname) {
+      for (tablink of tablinks) {
+        tablink.classList.remove("active-link");
+      }
+      for (tablContent of tablContents) {
+        tablContent.classList.remove("active-tap");
+      }
+      event.currentTarget.classList.add("active-link");
+
+      document.getElementById(tabname).classList.add("active-tap");
+    }
+  </script>
+  <script>
+    var sidemenu = document.getElementById("sidemenu");
+    function openMenu() {
+      sidemenu.style.right = "0";
+    }
+    function closemen() {
+      sidemenu.style.right = "-200px";
+    }
+  </script>
+</body>
+
+</html>

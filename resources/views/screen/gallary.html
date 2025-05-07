@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallary</title>
+  <link rel="icon" href="../image/profile.png">
+  <link rel="stylesheet" href="../style/style.css" />
+  <!-- font-awsome -->
+  <script src="https://kit.fontawesome.com/e8ae625125.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="../index.html">
+          <img src="../image/logo.png" class="logo" alt="" />
+        </a>
+        <ul id="sidemenu">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../#about">About</a></li>
+          <li><a href="gallary.html">Gallary</a></li>
+          <li><a href="../#services">Service</a></li>
+          <li><a href="../#portfolio">Portfolio</a></li>
+          <li><a class="btn__contact" href="#contact">Contact</a></li>
+          <i class="fa-solid fa-circle-xmark" onclick="closemen()"></i>
+        </ul>
+        <i class="fa-solid fa-bars" onclick="openMenu()"></i>
+      </nav>
+    </div>
+  </header>
+  <div class="home__screen">
+
+
+
+    <!-- header page -->
+    <div id="project">
+      <h1>My Gallary</h1>
+      <hr />
+      <div class="image-content">
+        <p><span>*</span> &nbsp; This web site sale nom khmer Images</p>
+        <div class="block-image">
+          <div class="box-image">
+            <img src="../image/n1.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n2.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n3.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n4.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n5.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n6.jpg" alt="">
+          </div>
+          
+          <div class="box-image">
+            <img src="../image/n8 (2).jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n9.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n10.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n11.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n12.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n14.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n15.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n16.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n17.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n18.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n19.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n20.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n21.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n22.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n23.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/n24.jpg" alt="">
+          </div>
+          <div class="box-image">
+            <img src="../image/m25.jpg" alt="">
+          </div>
+        </div>
+        <div class="popup-image">
+          <span>&times;</span>
+          <img src="../image/work-2.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- copyright -->
+  <div class="copyright">
+    <p>Copyright @seang kong heng<i class="fa-solid fa-heart"></i>2023</p>
+  </div>
+  <!-- ---------------------main js----------------------- -->
+  <script src="../js/main.js"></script>
+  <script>// <!-- ------------pop up image -->
+ 
+    document.querySelectorAll('.block-image img').forEach(image =>{
+      image.onclick =()=>{
+        document.querySelector('.popup-image').style.display ='block';
+        document.querySelector('.popup-image img').src=image.getAttribute('src')
+        doc
+      }
+      
+    });
+    document.querySelector('.popup-image span').onclick =()=>{
+      document.querySelector('.popup-image').style.display ='none';
+    }</script>
+</body>
+
+</html>
