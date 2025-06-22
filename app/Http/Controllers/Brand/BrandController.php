@@ -53,14 +53,15 @@ class BrandController extends Controller
             if($objBrand->logo&& file_exists(public_path(('brandLogo/'.$objBrand->loglo)))){
                 unlink(public_path('brandLogo/'.$objBrand->logo));
             }
-           
+
                 $logo=$request->file('logo');
                 $fileName=Carbon::now()->format('d-m-y'). '_'.time().'.'. $logo->getClientOriginalExtension();
                 $path=public_path('brandLogo/'.$fileName);
                 $logo->move(public_path('brandLogo/'),$fileName);
                 $objBrand->logo=$fileName;
-          
+
             $objBrand->save();
+            
             return redirect()->route('brand.index')->with('success','brand created');
         }catch(Exception $exception){
             return redirect()->route('user.create')->with('error',$exception->getMessage());

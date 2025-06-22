@@ -39,11 +39,11 @@ class BlogController extends Controller
 
             $is_public = 1;
 
-            if ($request->public) {
-                $is_public = 1;
-            }
-            if ($request->unpublic) {
-                $is_public = 0;
+            $is_public = 1;
+            if($request->status === "Public"){
+                $is_public=1;
+            }elseif($request->status === "Unpublic"){
+                $is_public =0;
             }
 
 
@@ -99,11 +99,10 @@ class BlogController extends Controller
             ]);
 
             $is_public = 1;
-            if ($request->public) {
-                $is_public = 1;
-            }
-            if ($request->unpublic) {
-                $is_public = 0;
+            if($request->status === "Public"){
+                $is_public=1;
+            }elseif($request->status === "Unpublic"){
+                $is_public =0;
             }
 
             $AuthorName = Auth()->user()->name;

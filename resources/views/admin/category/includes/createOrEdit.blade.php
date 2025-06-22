@@ -14,6 +14,6 @@
                 </div>
             </div>
         </div>
-       @include('admin.favorite.partials.createOrEdit')
+       @include('admin.category.partials.createOrEdit')
     </div>
 </div>

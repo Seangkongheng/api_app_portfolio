@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project\Category;
+use App\Models\Skill\Skill;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class CategoryController extends Controller
         return view('admin.category.index',compact('categories'));
     }
     public function create(){
-        return view('admin.category.createOrEdit');
+        $skills = Skill::select('id','title')->get();
+        return view('admin.category.createOrEdit',compact('skills'));
     }
     public function store(Request $request){
         try{
@@ -25,6 +27,7 @@ class CategoryController extends Controller
             ]);
             $objCategory = new Category();
             $objCategory->name=$request->name;
+            $objCategory->skill_id=$request->skill_id;
             if($request->hasFile('image')){
                 $image=$request->file('image');
                 $fileName=Carbon::now()->format('d-m-y'). '_'.time().'.'. $image->getClientOriginalExtension();
@@ -41,7 +44,8 @@ class CategoryController extends Controller
 
     public function edit($about_ID){
         $categoryEdit=Category::find($about_ID);
-        return view('admin.category.createOrEdit',compact('categoryEdit'));
+        $skills = Skill::select('id','title')->get();
+        return view('admin.category.createOrEdit',compact('categoryEdit','skills'));
     }
 
     public function update(Request $request ,$category_ID){
@@ -50,16 +54,19 @@ class CategoryController extends Controller
                 'name'=>'required',
             ]);
             $objCategory = Category::find($category_ID);
-            $objCategory->name=$request->name;
-            
-            if($objCategory->image&& file_exists(public_path(('CategoryImage/'.$objCategory->image)))){
-                unlink(public_path('CategoryImage/'.$objCategory->image));
+            $objCategory->name = $request->name;
+            $objCategory->skill_id = $request->skill_id;
+
+            if ($request->hasFile('image')) {
+                if ($objCategory->image && file_exists(public_path("CategoryImage/{$objCategory->image}"))) {
+                    unlink(public_path("CategoryImage/{$objCategory->image}"));
+                }
+                $image = $request->file('image');
+                $fileName = Carbon::now()->format('d-m-y') . '_' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path("CategoryImage/"), $fileName);
+                $objCategory->image = $fileName;
             }
-                $image=$request->file('image');
-                $fileName=Carbon::now()->format('d-m-y'). '_'.time().'.'. $image->getClientOriginalExtension();
-                $path=public_path('CategoryImage/'.$fileName);
-                $image->move(public_path('CategoryImage/'),$fileName);
-                $objCategory->image=$fileName;
+
             $objCategory->save();
             return redirect()->route('category.index')->with('success','Category updated');
         }catch(Exception $exception){
@@ -70,7 +77,7 @@ class CategoryController extends Controller
     public function destroy(Request $request){
         try{
             $objCategory = Category::find($request->category_ID);
-            
+
             if($objCategory->image&& file_exists(public_path(('CategoryImage/'.$objCategory->image)))){
                 unlink(public_path('CategoryImage/'.$objCategory->image));
             }

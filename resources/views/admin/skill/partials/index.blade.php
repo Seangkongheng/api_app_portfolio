@@ -5,6 +5,7 @@
                 <tr>
                     <th>#</th>
                     <th>My skill</th>
+                    <th>Decription</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -18,7 +19,7 @@
                         <td>
                             {{asset( $skill->description)? $skill->description: '' }}
                         </td>
-                        
+
                         <td>
                             <a class="text-success mx-3" href="{{ route('skill.edit', $skill->id) }}">
                                 <i class="fa-solid fa-pen-to-square"></i>

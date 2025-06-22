@@ -22,9 +22,24 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $names = Name::all();
+
+        $names = Name::select('name','description','profile','position','gender','pob','dob','email','current_address','phone')
+            ->orderBy('id', 'desc')
+            ->limit(1)
+            ->get()
+            ->map(function ($name) {
+            $name->image_url = $name->profile ? asset('brandLogo/' . $name->profile) : null;
+            return $name;
+            });
+
+        $programming = Laguage::select('name', 'percen', 'image')->get()->map(function ($name) {
+            $name->image_url = $name->image ? asset('brandLogo/' . $name->image) : null;
+            return $name;
+        });
+
         $experiences = Experience::all();
         $educations = Education::all();
+        $skill = Skill::select('id','title','description')->get();
         $blogs = Blog::where('is_public', 1)
             ->orderBy('id', 'desc')
             ->limit(3)
@@ -38,7 +53,9 @@ class HomeController extends Controller
             'names' => $names,
             'experiences' => $experiences,
             'educations' => $educations,
-            'blog' => $blogs
+            'blog' => $blogs,
+            'skill'=>$skill,
+            'programming'=>$programming
         ]);
     }
 
@@ -96,4 +113,6 @@ class HomeController extends Controller
             'related_blogs' => $relatedBlogs
         ]);
     }
+
+
 }

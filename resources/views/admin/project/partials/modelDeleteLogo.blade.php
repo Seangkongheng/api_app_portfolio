@@ -12,7 +12,7 @@
         <form action="{{route('project.destroy')}}" method="POST">
           @csrf
           <div class="modal-body">
-              <input type="hidden" name="project_ID" id="user_id">
+              <input type="hidden" name="project_id" id="user_id">
               Are you sure you want to delete this project?
           </div>
           <div class="modal-footer">

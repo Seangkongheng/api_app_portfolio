@@ -18,7 +18,7 @@
                         <span class="d-inline-block w-100">
                             <i class="bi bi-person-circle me-1 text-primary"></i>
                             <strong>Author:</strong>
-                            <span class="badge bg-info">0</span>
+                            <span class="badge bg-info">{{ $project->detail->author ?? "Unknow" }}</span>
                         </span>
                     </div>
 
@@ -26,20 +26,21 @@
                     <div class="col-md-3 col-sm-6 mb-2">
                         <span class="d-inline-block w-100">
                             <i class="bi bi-eye-fill me-1 text-secondary"></i>
-                            <strong>Views:</strong> 0
+                            <strong>Views:</strong> {{ $project->detail->view ?? "0" }}
                         </span>
                     </div>
 
-                    {{--  <!-- Status -->
+
+                    <!-- Status -->
                     <div class="col-md-3 col-sm-6 mb-2">
                         <span class="d-inline-block w-100">
                             <i class="bi bi-globe2 me-1 text-success"></i>
                             <strong>Status:</strong>
-                            <span class="badge {{ $project->is_public === 1 ? 'bg-success' : 'bg-secondary' }}">
-                                {{ $Blog->is_public === 1 ? 'Public' : 'Unpublic' }}
+                            <span class="badge {{ $project->detail->is_public === 1 ? 'bg-success' : 'bg-secondary' }}">
+                                {{ $project->detail->is_public === 1 ? 'Public' : 'Unpublic' }}
                             </span>
                         </span>
-                    </div>  --}}
+                    </div>
 
                     <!-- Published Date -->
                     <div class="col-md-3 col-sm-6 mb-2">
@@ -51,32 +52,48 @@
                             </span>
                         </span>
                     </div>
+
+                    {{--  category  --}}
+                    <div class="col-md-3 col-sm-6 mb-2">
+                        <span class="d-inline-block w-100">
+                            <i class="bi bi-tags-fill me-1 text-danger"></i>
+                            <strong>Category:</strong>
+                            <span class="badge bg-warning text-dark">
+                               {{ $project->detail->category->name }}
+                            </span>
+                        </span>
+                    </div>
                 </div>
             </div>
-
-
-
             <hr>
-            <div class="mt-3 text-justify" style="font-size: 1.1rem; line-height: 1.6; text-align: justify;">
-                {{ $project->description ?? "None" }}
-            </div>
+            <p>Thumbnail</p>
 
-            {{--  @php $images = json_decode($Blog->images) ?? []; @endphp
+            <div class="row">
+                <div class="col-12">
+                    <img class="card-img-top rounded img-fluid" alt="Blog Image"
+                        style="object-fit: cover; height: auto"
+                        src="{{ asset('projectThumnail/'.$project->detail->thumbnail_image) }}" alt="">
+                </div>
+            </div>
+            <div class="mt-3 text-justify" style="font-size: 1.1rem; line-height: 1.6; text-align: justify;">
+                {{ $project->detail->description ?? "" }}
+            </div>
+            @php $images = json_decode($project->detail->image) ?? []; @endphp
 
             @if(!empty($images))
             <div class="row mt-4">
                 @foreach ($images as $image)
                 <div class="col-md-4 mb-3">
-                    <a href="{{ asset('blogImages/' . $image) }}" data-lightbox="blog-gallery">
+                    <a href="{{ asset('projectImage/' . $image) }}" data-lightbox="blog-gallery">
                         <div class="card h-100 border-0 shadow-sm">
-                            <img src="{{ asset('blogImages/' . $image) }}" class="card-img-top rounded img-fluid"
+                            <img src="{{ asset('projectImage/' . $image) }}" class="card-img-top rounded img-fluid"
                                 alt="Blog Image" style="object-fit: cover; height: 200px;">
                         </div>
                     </a>
                 </div>
                 @endforeach
             </div>
-            @endif  --}}
+            @endif
         </div>
 
         <div class="card-footer bg-light text-end">

@@ -150,6 +150,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/name/store', [NameController::class, 'store'])->name('name.store');
     Route::get('/name/edit/{id}', [NameController::class, 'edit'])->name('name.edit');
     Route::put('/name/update/{id}', [NameController::class, 'update'])->name('name.update');
+    Route::get('/name/show/{id}', [NameController::class, 'show'])->name('name.show');
+
+
+
     Route::post('/name/destroy', [NameController::class, 'destroy'])->name('name.destroy');
     Route::post('/name/delete', [NameController::class, 'photoDelete'])->name('name.delete');
     // ------------------------Tool---------------------------------

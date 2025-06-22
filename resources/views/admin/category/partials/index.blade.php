@@ -4,30 +4,39 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Image</th>
                     <th>Name</th>
-                   
+                    <th>Skill</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categories as $index => $category)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>
-                           {{asset( $category->name)? $category->name: '' }}
-                        </td>
-                        <td>
-                           <img src="{{ asset('categoryImage/'.$category->image) }}" alt="" width="100px">
-                         </td>
-                        <td>
-                            <a class="text-success mx-3" href="{{ route('category.edit', $category->id) }}">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <button  style="border: none;background:none" class="text-danger btnDeleteUser" value="{{ $category->id }}" data-toggle="modal" data-target="#exampleModal">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="align-middle">{{ $index + 1 }}</td>
+                    <td class="align-middle">
+                        <img src="{{ asset('categoryImage/'.$category->image) }}" alt="Category Image" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
+                    </td>
+                    <td class="align-middle fw-semibold">
+                        {{ $category->name ?? '' }}
+                    </td>
+                    <td class="align-middle">
+                        @if($category->skill)
+                            <span class="badge bg-primary">{{ $category->skill->title }}</span>
+                        @else
+                            <span class="badge bg-secondary">No Skill</span>
+                        @endif
+                    </td>
+                    <td class="align-middle">
+                        <a class="btn btn-sm  mx-1" href="{{ route('category.edit', $category->id) }}" title="Edit">
+                            <i class="fa-solid fa-pen-to-square text-success"></i>
+                        </a>
+                        <button type="button" class="btn btn-sm  btnDeleteUser mx-1"
+                            value="{{ $category->id }}" data-toggle="modal" data-target="#exampleModal" title="Delete">
+                            <i class="fa-solid fa-trash text-danger"></i>
+                        </button>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>

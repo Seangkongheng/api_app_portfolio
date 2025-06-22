@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Language;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language\Laguage;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -17,14 +18,24 @@ class LanguageController extends Controller
         return view('admin.ProLanguage.createOrEdit');
     }
     public function store(Request $request){
-     
+
         try{
             $request->validate([
                 'name'=>'required',
                 'percen'=>'required',
-              
+
             ]);
             $objLanugage = new Laguage();
+
+            if($request->hasFile('image')){
+                $logo=$request->file('image');
+                $fileName=Carbon::now()->format('d-m-y'). '_'.time().'.'. $logo->getClientOriginalExtension();
+                $path=public_path('brandLogo/'.$fileName);
+                $logo->move(public_path('brandLogo/'),$fileName);
+                $objLanugage->image=$fileName;
+            }
+
+
 
             $objLanugage->name=$request->name;
             $objLanugage->percen=$request->percen;
@@ -46,9 +57,20 @@ class LanguageController extends Controller
                 'name'=>'required',
             ]);
             $objLanugage = Laguage::find($edu_ID);
-            
+
             $objLanugage->name=$request->name;
             $objLanugage->percen=$request->percen;
+
+
+            if ($request->hasFile('image')) {
+                if ($objLanugage->image && file_exists(public_path("brandLogo/{$objLanugage->image}"))) {
+                    unlink(public_path("brandLogo/{$objLanugage->image}"));
+                }
+                $logo = $request->file('image');
+                $fileName = Carbon::now()->format('d-m-y') . '_' . time() . '.' . $logo->getClientOriginalExtension();
+                $logo->move(public_path('brandLogo/'), $fileName);
+                $objLanugage->image = $fileName;
+            }
             $objLanugage->save();
             return redirect()->route('language.index')->with('success','Language updated');
         }catch(Exception $exception){
