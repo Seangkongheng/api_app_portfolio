@@ -37,7 +37,7 @@ class ProjectController extends Controller
                 'url' => 'required|url'
             ]);
 
-        
+
             $objProject = new Project();
             $objProject->name = $request->name;
             $objProject->save();
@@ -55,7 +55,7 @@ class ProjectController extends Controller
                 }
             }
             $objProjectDetail->image = json_encode($images);
-           
+
             if ($request->hasFile('thumbnail_image')) {
                 $image = $request->file('thumbnail_image');
                 $fileName = Carbon::now()->format('d-m-y');
@@ -82,6 +82,11 @@ class ProjectController extends Controller
     {
         $projectEdit = Project::find($con_ID);
         return view('admin.project.createOrEdit', compact('projectEdit'));
+    }
+
+    public function  show($id)  {
+        $project = Project::find($id);
+        return view('admin.project.show',compact('project'));
     }
 
     // public function update(Request $request ,$con_ID){

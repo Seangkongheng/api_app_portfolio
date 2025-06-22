@@ -1,25 +1,30 @@
 <div class="content-wrapper">
     <div class="container">
-        @if (session('success'))
-           <p class="alert alert-success"> {{ session('success') }}</p>
-        @endif
-        @if (session('error'))
-        <p class="alert alert-danger"> {{ session('error') }}</p>
-     @endif
-
-        <div class="row ">
+      <div class="row mb-4">
             <div class="col-12">
-                <div class="mt-3" style="display: flex;justify-content: space-between;align-items: center" >
-                    <div class="title">Curriculum Vitae</div>
-                    <div class="button-add ms-auto">
-                        <a class="btn btn-info" href="{{ route('cv.create') }}">
-                            <i class="fa-solid fa-plus"></i>
-                        </a>
-                    </div>   
+                <div class="bg-light rounded p-3 shadow-sm d-flex flex-wrap align-items-center justify-content-between gap-3 mt-4">
+
+                    <h4 class="mb-0 d-flex align-items-center text-dark">
+                         <i class="bi bi-list-ul me-2 text-info"></i> &nbsp; My CV
+                    </h4>
+                    <form class="d-flex flex-grow-1 mx-3" action="{{ route('experience.index') }}" method="GET"
+                        style="max-width: 400px;">
+                        <input type="text" name="search" class="form-control rounded-start" placeholder="Search CV..."
+                            value="{{ request('search') }}">
+                        <button class="btn btn-info text-white rounded-end" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+
+
+                    <a href="{{ route('cv.create') }}" class="btn btn-info d-flex align-items-center">
+                        <i class="bi bi-plus-lg me-2 text-white"></i>
+                    </a>
                 </div>
             </div>
         </div>
-        
+
+
 
        @include('admin.cv.partials.index')
     </div>

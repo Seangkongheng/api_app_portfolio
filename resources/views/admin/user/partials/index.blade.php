@@ -1,4 +1,4 @@
-<div class="card mt-3">
+<div class="card mt-3 ">
     <div class="card-body">
         <table class="table table-hover">
             <thead>

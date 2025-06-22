@@ -1,20 +1,19 @@
 <div class="content-wrapper">
-    <div class="container">
-        <div class="row ">
+    <div class="container  p-4 p-md-5">
+        <div class="row mb-4">
             <div class="col-12">
-                <div class="mt-3" style="display: flex;justify-content: space-between;align-items: center" >
-                    <div class="title">Add skill</div>
-                    <div class="button-add ms-auto">
-                        <a class="btn btn-info" href="{{ route('skill.index') }}">
-                            <i class="fa-solid fa-rotate-left"></i>
-                        </a>
-                    </div>   
+                <div  class="bg-light rounded p-3 shadow-sm d-flex flex-wrap align-items-center justify-content-between gap-3 ">
+                    <h4 class="mb-0 d-flex align-items-center text-dark">
+                        <i class="fa-solid fa-code-branch me-2 text-info"></i> &nbsp;
+                        {{ isset($brandEdit->id) ? "Update Skill" : "Create Skill" }}
+
+                    </h4>
+                    <a class="btn btn-info" href="{{ route('skill.index') }}">
+                            <i class="fa-solid fa-rotate-left text-white"></i>
+                    </a>
                 </div>
             </div>
         </div>
-        @if (session('error'))
-        <p class="alert alert-danger"> {{ session('error') }}</p>
-     @endif
        @include('admin.skill.partials.createOrEdit')
     </div>
 </div>

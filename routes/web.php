@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\AuthControllers\AuthController;
+use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Brand\BrandController;
 use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Cv\CvController;
+use App\Http\Controllers\Dashbaord\DashbaordController;
 use App\Http\Controllers\Education\EducationController;
 use App\Http\Controllers\Experience\ExperienceController;
 use App\Http\Controllers\Favorite\FavoriteController;
@@ -43,9 +45,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/gallary', function () {
         return view('gallarys.index');
     });
-    Route::get('/dashboard', function () {
-        return view('admin.dashbord.index');
-    })->name('dashboard.index');
+
+    // admin dashbaord
+    Route::get('/dashboard', [DashbaordController::class, 'index'])->name('dashboard.index');
+
+
 
     // ------------------------user---------------------------------
     Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
@@ -110,6 +114,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
     Route::post('/project/store', [ProjectController::class, 'store'])->name('project.store');
     Route::get('/project/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
+    Route::get('/project/show/{id}', [ProjectController::class, 'show'])->name('project.show');
     Route::put('/project/update/{id}', [ProjectController::class, 'update'])->name('project.update');
     Route::post('/project/destroy', [ProjectController::class, 'destroy'])->name('project.destroy');
     // ------------------------category---------------------------------
@@ -163,6 +168,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/favorite/update/{id}', [FavoriteController::class, 'update'])->name('favorite.update');
     Route::post('/favorite/destroy', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
     Route::post('/favorite/delete', [FavoriteController::class, 'photoDelete'])->name('favorite.delete');
+
+
+
+    // ------------------------Favorite---------------------------------
+    Route::get('/blog/index', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
+    Route::post('/blog/store', [BlogController::class, 'store'])->name('blog.store');
+    Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+    Route::get('/blog/show/{id}', [BlogController::class, 'show'])->name('blog.show');
+    Route::put('/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+    Route::post('/blog/destroy', [BlogController::class, 'destroy'])->name('blog.destroy');
 });
 
 
