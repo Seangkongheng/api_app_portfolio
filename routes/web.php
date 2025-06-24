@@ -24,19 +24,7 @@ use App\Http\Controllers\Tool\ToolController;
 use App\Http\Controllers\UserControllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
 // -----------------------login------------------------
 Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 
@@ -47,9 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     // admin dashbaord
-    Route::get('/dashboard', [DashbaordController::class, 'index'])->name('dashboard.index');
-
-
+    Route::get('/', [DashbaordController::class, 'index'])->name('dashboard.index');
 
     // ------------------------user---------------------------------
     Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
