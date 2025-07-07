@@ -74,6 +74,32 @@ class HomeController extends Controller
         ]);
     }
 
+
+    public function summit(Requst $request){
+
+
+            $validate = $request->validate([
+                'firstName'=>'required|string',
+                'lastName'=>'required|string',
+                'phone'=>'required|string',
+                'email'=>'required|string',
+                'decription'=>'required|string',
+            ]);
+            $message = new ContactMessage();
+    $message = new ContactMessage();
+        $message->firstName  = $validated['firstName'];
+        $message->lastName   = $validated['lastName'];
+        $message->phone      = $validated['phone'];
+        $message->email      = $validated['email'];
+        $message->description = $validated['description'];
+            $message->save();
+          return response()->json([
+            'message' => 'Form submitted successfully',
+            'data'    => $message
+        ], 200);
+
+ }
+
     public function show($id)
     {
         $blog = Blog::where('id', $id)->first();
@@ -113,6 +139,8 @@ class HomeController extends Controller
             'related_blogs' => $relatedBlogs
         ]);
     }
+
+
 
 
 }

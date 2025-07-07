@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/blog', [HomeController::class, 'blogs'])->name('home.blog');
 Route::get('/blog/{id}', [HomeController::class, 'show'])->name('blog.show');
+Route::post('/contact/summit', [HomeController::class, 'summit'])->name('contact.summit');
 
 
 Route::get('/skill/{id}', [SkillFrontController::class, 'show'])->name('skill.show');
